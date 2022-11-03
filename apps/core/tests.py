@@ -12,6 +12,12 @@ class AuthorTestCase(TestCase):
     def setUp(self) -> None:
         self.client = APIClient()
 
+        self.author = Author(
+            first_name='Edwin',
+            last_name='Gutierrez'
+        )
+        self.author.save()
+
     def test_create_author(self):
         response = self.client.post(
             '/api/authors/', {
@@ -33,8 +39,18 @@ class AuthorTestCase(TestCase):
 
         response = self.client.get('/api/authors/')
 
-        self.assertEqual(len(response.data), 2)
-        
+        self.assertEqual(len(response.data), 3)
+
+    
+    def test_update_author(self):
+        response = self.client.put(
+            f'/api/authors/{self.author.id}/', {
+                'first_name': 'Edwin',
+                'last_name': 'Mendoza'
+            }
+        )
+
+        self.assertEquals(response.data.get('last_name'), 'Mendoza')
 
 class BookTestCase(TestCase):
     def setUp(self) -> None:
