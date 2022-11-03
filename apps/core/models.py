@@ -18,10 +18,21 @@ class Author(BaseModel):
         return f'{self.first_name} {self.last_name}'
 
 
+class Category(BaseModel):
+    name = models.CharField(max_length=25, unique=True)
+
+    def __str__(self) -> str:
+        return self.name
+
+
 class Book(BaseModel):
     title = models.CharField(max_length=100)
     isbn = models.CharField(max_length=100)
-    authors = models.ManyToManyField(Author)
+    authors = models.ManyToManyField(Author, blank=True)
+    status = models.CharField(null=True, blank=True, max_length=20)
+    categories = models.ManyToManyField(Category, blank=True)
+    page_count = models.PositiveSmallIntegerField(null=True, blank=True)
+    thumbnail_url = models.URLField(null=True, blank=True)
 
     def __str__(self) -> str:
         return self.title
