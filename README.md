@@ -8,6 +8,13 @@ $ docker-compose build
 $ docker-compose up
 ```
 
+# **Make a db.sqlite3 or setup settings.py file for another database**
+
+```bash
+# make a sqlite3 file
+$ touch db.sqlite3
+```
+
 ```bash
 # setup
 $ docker-compose run django python manage.py makemigrations
