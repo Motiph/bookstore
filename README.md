@@ -5,7 +5,6 @@
 ```bash
 # build
 $ docker-compose build
-$ docker-compose up
 ```
 
 # **Make a db.sqlite3 or setup settings.py file for another database**
@@ -31,6 +30,11 @@ $ docker-compose run django python manage.py tests apps.core.tests
 ```bash
 # generate fake data
 $ docker-compose run django python manage.py generate_data
+```
+
+#Run
+```bash
+$ docker-compose up
 ```
 
 
