@@ -33,6 +33,14 @@ class Book(BaseModel):
     categories = models.ManyToManyField(Category, blank=True)
     page_count = models.PositiveSmallIntegerField(null=True, blank=True)
     thumbnail_url = models.URLField(null=True, blank=True)
+    long_description = models.TextField(null=True, blank=True)
+    short_description = models.TextField(null=True, blank=True)
+
 
     def __str__(self) -> str:
         return self.title
+
+    def save(self, *args, **kwargs):
+        if self.thumbnail_url == None:
+            self.thumbnail_url = 'https://sciendo.com/product-not-found.png'
+        super(Book, self).save(*args, **kwargs)

@@ -20,7 +20,7 @@ class BookSerializer(serializers.ModelSerializer):
     categories = serializers.PrimaryKeyRelatedField(many=True, queryset=Category.objects.all())
     class Meta:
         model = Book
-        fields = ('id', 'title', 'isbn', 'authors', 'categories', 'status', 'page_count', 'thumbnail_url')
+        fields = ('id', 'title', 'isbn', 'authors', 'categories', 'status', 'page_count', 'thumbnail_url', 'short_description', 'long_description')
 
 
 class BookDetailedSerializer(serializers.ModelSerializer):
